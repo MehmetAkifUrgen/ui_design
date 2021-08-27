@@ -8,6 +8,7 @@ const List = (
         data={props.data}
         renderItem={props.renderItem}
         horizontal={true}
+        
     >
 
     </FlatList>
