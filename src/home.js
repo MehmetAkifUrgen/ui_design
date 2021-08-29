@@ -1,16 +1,21 @@
 import React,{useState,useEffect} from 'react';
-import {View,Dimensions,Text,FlatList, TouchableOpacity,Image } from 'react-native';
+import {View,Dimensions,Text,FlatList, TouchableOpacity,Image,ScrollView } from 'react-native';
 import Styles from './styles/styles'
 import TopHeadButton from './component/topHeadButton';
-import List from './component/list'
 import jsonData from './JsonData/data.json'
-const Home = ({
-    params,
-}) => {
+import musicType from './JsonData/musicType'
+
+const Home = ({}) => {
     const [cancel,setCancel]=useState(false)
     const [music,setMusic]=useState(false)
     const [done,setDone]=useState(false)
 
+    const musicTypeRenderItem= 
+        musicType.map((item,index)=> {
+            return(
+                <Text style={Styles.musicTypeStyleText} key={index}> {item} </Text>
+            )
+        })
 
     const renderItem = ({item}) => {
         const type=item.tags[0]
@@ -55,7 +60,9 @@ const Home = ({
                 <TopHeadButton onPress={()=> {setCancel(false),setDone(false),setMusic(true)}} topHeadButtonStyle={Styles.topHeadButtonStyle} textStyle={music==true  ? [Styles.textStyle,{fontSize:Dimensions.get('screen').height /40}]: Styles.textStyle} topHeadText={"Choose Music"}></TopHeadButton>
                 <TopHeadButton onPress={()=> {setCancel(false),setDone(true),setMusic(false)}} topHeadButtonStyle={Styles.topHeadButtonStyle} textStyle={done==true  ? [Styles.textStyle,{fontSize:Dimensions.get('screen').height /40}]: Styles.textStyle} topHeadText={"Done"}></TopHeadButton>
             </View>
-            
+            <ScrollView ind removeClippedSubviews={true}  showsHorizontalScrollIndicator={false} contentContainerStyle={Styles.musicTypeStyle} horizontal={true}>
+                {musicTypeRenderItem}
+            </ScrollView>
         </View>
         <FlatList
             data={Object.values(jsonData.data)}
@@ -64,6 +71,5 @@ const Home = ({
     </View>
     )
     
-
 }
 export default Home;

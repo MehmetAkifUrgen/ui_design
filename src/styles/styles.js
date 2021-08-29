@@ -1,5 +1,4 @@
-import React from 'react';
-import { Text, View,StyleSheet,Dimensions } from 'react-native';
+import {StyleSheet,Dimensions } from 'react-native';
 
 const styles=StyleSheet.create({
     container:{
@@ -73,7 +72,19 @@ const styles=StyleSheet.create({
         padding:Dimensions.get('screen').height /220,
         borderColor:'#d4cfd0',
         borderWidth:Dimensions.get('screen').width /200
-    }
+    },
+    musicTypeStyle:{
+        alignItems:'center',
+        justifyContent:'center',
+        flexGrow: 1
+    },
+    musicTypeStyleText:{
+        textAlign:'center',
+        flex:1,
+        marginHorizontal:Dimensions.get('screen').width /40,
+        color:'#000000'
+    },
+    
 })
 
 export default styles;
